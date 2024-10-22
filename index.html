@@ -1,43 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Dana App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 100px;
-        }
-
-        button {
-            padding: 15px 30px;
-            font-size: 18px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>测试打开 Dana 应用</title>
 </head>
 <body>
-
-    <h1>Open Dana App</h1>
-    <p>Click the button below to open the Dana app.</p>
-    <button id="openApp">Open Dana</button>
+    <button id="openApp">打开 Dana 应用</button>
 
     <script>
         document.getElementById('openApp').addEventListener('click', function () {
-            // Try to open the app using the intent URL
-            window.location.href = "intent://#Intent;package=id.dana;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Did.dana;end";
+            // 尝试使用 Scheme 打开应用
+            window.location.href = "danaid://";
+
+            // 如果应用未安装，转到 Play Store
+            setTimeout(function () {
+                window.location.href = "https://play.google.com/store/apps/details?id=id.dana";
+            }, 2000); // 2秒后跳转
         });
     </script>
-
 </body>
 </html>
