@@ -13,6 +13,10 @@
                         const qrData = "00020101021226650013ID.NETZME.WWW01189360081401000958500215ID10253852527760303UKE51440014ID.CO.QRIS.WWW0215ID10253852527760303UKE5204581753033605405200005802ID5913Woo EraserNet6013JAKARTA TIMUR61051324062690703A010812qris_invoice99420002000132812211631e2744598b3f07dd85818df1630470E9";
 
             const appUrl = `danaid://open?data=${encodeURIComponent(qrData)}`;
+
+             // 打印 URL，检查数据是否正确拼接
+            console.log("Constructed URL:", appUrl);
+            
             window.location.href = appUrl;
             // 尝试使用 Scheme 打开应用
             // window.location.href = "danaid://";
