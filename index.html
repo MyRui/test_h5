@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>测试打开 Dana 应用</title>
+    <title>打开 Dana 应用</title>
 </head>
 <body>
     <button id="openApp">打开 Dana 应用</button>
 
     <script>
         document.getElementById('openApp').addEventListener('click', function () {
-
             const qrData = "00020101021226650013ID.NETZME.WWW01189360081401000958500215ID10253852527760303UKE51440014ID.CO.QRIS.WWW0215ID10253852527760303UKE5204581753033605405200005802ID5913Woo EraserNet6013JAKARTA TIMUR61051324062690703A010812qris_invoice99420002000132812211631e2744598b3f07dd85818df1630470E9";
-const encodedQrData = encodeURIComponent(qrData);
+            const encodedQrData = encodeURIComponent(qrData);
+
+            const appUrl = `danaid://open?data=${encodedQrData}`;
             
-const appUrl = `danaid://open?data=${encodedQrData}`;
-              // 打印 URL，检查数据是否正确拼接
             console.log("Constructed URL:", appUrl);
-window.location.href = appUrl;
-        
-            // 如果应用未安装，转到 Play Store
-            setTimeout(function () {
-                window.location.href = "https://play.google.com/store/apps/details?id=id.dana";
-            }, 2000); // 2秒后跳转
+
+            // 兼容 iOS，改用 <a> 触发
+            const link = document.createElement("a");
+            link.href = appUrl;
+            link.style.display = "none";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         });
     </script>
 </body>
